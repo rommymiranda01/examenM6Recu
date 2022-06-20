@@ -46,7 +46,6 @@
 
         let main = document.getElementById("main");
         main.textContent='';
-        //console.log(main)
 
         if (!document.cookie){
             let titol = document.createElement("h2");
@@ -64,7 +63,7 @@
             main.append(pborn);
 
             let pday = document.createElement("p");
-            pday.textContent = "That day was"
+            pday.textContent = "That day was "+ getCookieValue(document.cookie).getDate
             main.append(pday);
 
             let pyears = document.createElement("p");
