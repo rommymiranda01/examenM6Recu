@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Document</title>
+    <style>
+        #main {
+            height: 200px;
+            width: 600px;/*50%;*/
+            background-color: navy;
+            color:white;
+            border: 10px solid black;
+            margin: 0 auto;
+            /* margin-top: 100px;*/
+        }
+        #buttons{
+            width: 150px;/*50%;*/
+            /*height: 50px;/*50%;*/
+            margin: 0 auto;
+            padding: 2em;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="main">
+        <!--h1>Click "Get Info" to provide your details</h1-->
+
+        <h1>Hi, "your full name goes here"!!!</h1>
+        <p>You were born on <strong>"Your birth date goes here"</strong></p>
+        <p>That day was <strong>"The date of week goes here"</strong></p>
+        <p>And untill now, you have had <strong>"n"</strong> birthdays on that day of week</p>
+
+
+    </div>
+    <div id="buttons">
+        <input type="button" onclick="loadWindow()" value="Get Info">
+        <input type="button" onclick="refreshWindow()" value="Refresh">
+
+    </div>
+<script>
+    addEventListener("load",()=>{
+        /*Afegeix el codi aquí per tal que faci tot el que es
+        * demana quan carreguem inicialment la pàgina*/
+
+        let main = document.getElementById("main");
+        main.textContent='';
+        //console.log(main)
+
+        if (!document.cookie){
+            let titol = document.createElement("h2");
+            titol.textContent = "Click Get Info to provide your details";
+            main.append(titol)
+        }else {
+            let titol = document.createElement("h2");
+            titol.textContent = "Hi "+document.cookie;
+            main.append(titol)
+
+            console.log(document.cookie)
+
+            let pborn = document.createElement("p");
+            pborn.textContent = "You born on " + getCookieValue(document.cookie);
+            main.append(pborn);
+
+            let pday = document.createElement("p");
+            pday.textContent = "That day was"
+            main.append(pday);
+
+            let pyears = document.createElement("p");
+            pyears.textContent = "And untill now, you had  birthdays on that day of week"
+            main.append(pyears);
+        }
+    })
+
+    /*Code adapted from www.w3schools.com*/
+    const getCookieValue= (cookieStr, cookieName)=>{
+        let name = cookieName + "=";
+        let ca = cookieStr.split(';');
+        let c;
+        for(let i = 0; i <ca.length; i++) {
+            c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(11);
+                console.log(c)
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return c;
+    }
+
+
+
+    const loadWindow=()=>{
+        /*Afegeix el codi aquí per tal que mostri la pàgina Secondary.html*/
+        window.location.assign("Secondary.html");
+    }
+
+    const refreshWindow=()=>{
+        /*Afegeix el codi aquí per tal que actualitzi la pàgina*/
+        window.location.reload();
+    }
+
+
+</script>
+
+</body>
+</html>
